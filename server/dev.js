@@ -7,7 +7,7 @@ import { handler } from './index.js';
 import { build } from './build.js';
 import { src } from './utils.js';
 
-const port = 3000;
+const port = 3001;
 
 process.env.NODE_ENV = 'development';
 

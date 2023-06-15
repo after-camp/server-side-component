@@ -1,21 +1,31 @@
-import { Suspense } from 'react';
-import { getAll } from './db/get.js';
-import SearchableAlbumList from './SearchableAlbumList';
+import {Suspense} from 'react';
+import {getAll} from './db/get.js';
+import SearchablePokemonList from './SearchablePokemonList.jsx';
+import Header from "./Header.jsx";
+import SearchBox from "./SearchBox";
 
-/** @param {{ search: string }} props */
 export default async function ServerRoot({ search }) {
 	return (
-		<>
-			<h1>AbraMix</h1>
+		<div>
+			<Header />
+			<SearchBox search={search} />
 			<Suspense fallback={<h2>Loading...</h2>}>
-				<Albums search={search} />
+				<Pokemons search={search} />
 			</Suspense>
-		</>
+		</div>
 	);
 }
 
-/** @param {{ search: string }} props */
-async function Albums({ search }) {
-	const albums = await getAll();
-	return <SearchableAlbumList search={search} albums={albums} />;
+async function Pokemons({ search }) {
+	const pokemons = await getAll();
+	return <SearchablePokemonList search={search} pokemons={pokemons} />;
 }
+
+// function Pokemons({ search }) {
+// 	const [pokemons, setPokemons] = React.useState([]);
+// 	React.useEffect(() => {
+// 		getAll().then(setPokemons)
+// 	}, []);
+//
+// 	return <SearchablePokemonList search={search} pokemons={pokemons} />;
+// }

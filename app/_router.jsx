@@ -48,10 +48,7 @@ function Router() {
 	}, []);
 
 	return (
-		<>
 			<ServerOutput url={url} />
-			<DevPanel url={url} />
-		</>
 	);
 }
 
